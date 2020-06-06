@@ -39,11 +39,7 @@ def callback(data):
     if mean(imgvalues) > armrange && startmoving == True:
 	vel_msg.linear.x = 0.15
 	vel_pub.publish(vel_msg)
-    else:
-	vel_msg.linear.x = 0
-	vel_pub.publish(vel_msg)
-	startmoving = False
-	usearm = True
+	
     elif usearm = True:
 	arm_msg.position.x = mean(imgvalues)
 	arm_msg.position.y = 0
@@ -51,6 +47,12 @@ def callback(data):
 	arm_pub.publish(arm_msg)
 	reason = "arm found handle"
 	rospy.signal_shutdown(reason)
+	
+    else:
+	vel_msg.linear.x = 0
+	vel_pub.publish(vel_msg)
+	startmoving = False
+	usearm = True
     
     startmoving = False
     usearm = False
