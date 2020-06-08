@@ -1,0 +1,19 @@
+<launch>
+    
+<!--Launch Files-->
+<include file="$(find astra_camera)/launch/astra.launch" />
+<include file="$(find turtlebot_bringup)/launch/minimal.launch" />
+
+
+
+
+<!--Nodes-->
+<node name="chair_detector" pkg="faceReco" type="chair_centroid.py">
+</node>
+<node name="chair_find" pkg="faceReco" type="chairalign.py">
+</node>
+<node name="foo_throttler" type="throttle" pkg="topic_tools" args="messages /camera/rgb/image_raw 3">
+</node>
+
+
+</launch>
