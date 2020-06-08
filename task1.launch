@@ -1,0 +1,21 @@
+<launch>
+    
+<!--Launch Files-->
+<include file="$(find astra_camera)/launch/astra.launch" />
+<include file="$(find turtlebot_bringup)/launch/minimal.launch" />
+<include file="$(find ros_test)/launch/asr_lm2.launch" />
+
+
+
+<!--Nodes-->
+<node name="image_converter" pkg="faceReco" type="applyvggtest.py">
+</node>
+<node name="orders_node" pkg="faceReco" type="orders.py">
+</node>
+<node name="foo_throttler" type="throttle" pkg="topic_tools" args="messages /camera/rgb/image_raw 6">
+</node>
+<node name="move_fixer" pkg="faceReco" type="fixmovement.py">
+</node>
+
+
+</launch>
