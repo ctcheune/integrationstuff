@@ -37,6 +37,12 @@ def follow_body(data):
     #navigateTo = data.data
     global body 
     body = True
+	
+def follow_body(data):
+    #global navigateTo
+    #navigateTo = data.data
+    global body 
+    body = True
 
 def callback(data):
     try:
@@ -207,6 +213,7 @@ body_detector = cv2.CascadeClassifier('/home/nickioan/comp_ws/src/FaceReco/faceR
 image_sub = rospy.Subscriber("/camera/rgb/image_raw_throttle",Image,callback)
 name_sub = rospy.Subscriber("/orders/find",String,change_target)
 follow_sub = rospy.Subscriber("/orders/follow",String,follow_body)
+stop_sub = rospy.Subscriber("/orders/stop",String,stop)
 #depth_sub = rospy.Subscriber("/camera/depth_registered/image_throttle", Image, depth_callback)
 
 vel_pub = rospy.Publisher('/mobile_base/commands/velocity',Twist,queue_size=10)
